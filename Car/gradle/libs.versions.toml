@@ -1,0 +1,37 @@
+[versions]
+agp = "8.9.1"
+flexbox = "3.0.0"
+glide = "4.15.1"
+junit = "4.13.2"
+junitVersion = "1.2.1"
+espressoCore = "3.6.1"
+appcompat = "1.7.0"
+material = "1.12.0"
+activity = "1.10.1"
+constraintlayout = "2.2.1"
+v2All = "2.20.1"
+volley = "1.2.1"
+
+[libraries]
+compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "glide" }
+flexbox = { module = "com.google.android.flexbox:flexbox", version.ref = "flexbox" }
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+v2-all = { module = "com.kakao.sdk:v2-all", version.ref = "v2All" }
+v2-cert = { module = "com.kakao.sdk:v2-cert", version.ref = "v2All" }
+v2-friend = { module = "com.kakao.sdk:v2-friend", version.ref = "v2All" }
+v2-navi = { module = "com.kakao.sdk:v2-navi", version.ref = "v2All" }
+v2-talk = { module = "com.kakao.sdk:v2-talk", version.ref = "v2All" }
+v2-share = { module = "com.kakao.sdk:v2-share", version.ref = "v2All" }
+v2-user = { module = "com.kakao.sdk:v2-user", version.ref = "v2All" }
+volley = { module = "com.android.volley:volley", version.ref = "volley" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+
