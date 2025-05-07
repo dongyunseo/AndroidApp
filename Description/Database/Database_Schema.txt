@@ -2,10 +2,11 @@ Database Schema
 -------------------------------------------------------------------------------
 1. Car_Img_File
 설명: 제조사별 차량별 이미지 정보를 저장
-컬럼명	타입	NULL	설명
-manufacturer_name	varchar(50)	YES	제조사 이름
-car_name varchar(50)	YES	차량 이름
-img_url varchar(255)	YES	차량 이미지 경로
+컬럼명                | 타입           | NULL 허용 | 설명
+----------------------|----------------|------------|------------------------
+manufacturer_name     | VARCHAR(50)    | YES        | 제조사 이름
+car_name              | VARCHAR(50)    | YES        | 차량 이름
+img_url               | VARCHAR(255)   | YES        | 차량 이미지 경로
 
 *PK 없음: 이 테이블은 단순히 제조사와 모델명에 해당하는 차량 이미지 URL을 저장합니다.
 설계 목적: 정적 이미지 정보를 제공하므로 manufacturer_name + car_name 조합이 유일한 식별자 역할을 합니다.
