@@ -4,8 +4,8 @@ Database Schema
 설명: 제조사별 차량별 이미지 정보를 저장
 컬럼명	타입	NULL	설명
 manufacturer_name	varchar(50)	YES	제조사 이름
-car_name	        varchar(50)	YES	차량 이름
-img_url	          varchar(255)	YES	차량 이미지 경로
+car_name varchar(50)	YES	차량 이름
+img_url varchar(255)	YES	차량 이미지 경로
 
 *PK 없음: 이 테이블은 단순히 제조사와 모델명에 해당하는 차량 이미지 URL을 저장합니다.
 설계 목적: 정적 이미지 정보를 제공하므로 manufacturer_name + car_name 조합이 유일한 식별자 역할을 합니다.
@@ -17,17 +17,17 @@ Car_Img_File은 외래키 수준의 종속 테이블이므로 별도의 PK 없�
 2. Car_Pirce
 설명: 중고차 상세 정보 테이블
 컬럼명	타입	NULL	설명
-Car_No	        int(11)	NO (PK)	차량 고유번호 (AUTO_INCREMENT)
-Manufacturer	  varchar(50)	YES	제조사
-Model_Name	    varchar(100)	YES	모델명
-Full_Model_Name	varchar(200)	YES	모델 전체 이름
-URL	            varchar(255)	YES	상세 페이지 링크
-Car_Img_URL	    varchar(255)	YES	차량 이미지 URL
-Price	          int(11)	YES	가격
-Year	          int(11)	YES	연식
-Mileage	        varchar(50)	YES	주행 거리
-Fuel_Type	      varchar(50)	YES	연료 종류
-Location	      varchar(100)	YES	판매 지역
+Car_No int(11)	NO (PK)	차량 고유번호 (AUTO_INCREMENT)
+Manufacturer varchar(50)	YES	제조사
+Model_Name varchar(100)	YES	모델명
+Full_Model_Name varchar(200)	YES	모델 전체 이름
+URL varchar(255)	YES	상세 페이지 링크
+Car_Img_URL varchar(255)	YES	차량 이미지 URL
+Price int(11)	YES	가격
+Year int(11)	YES	연식
+Mileage varchar(50)	YES	주행 거리
+Fuel_Type varchar(50)	YES	연료 종류
+Location varchar(100)	YES	판매 지역
 
 *PK: Car_No (Auto Increment)
 설계 목적: 중고차 개별 차량 정보를 담는 핵심 테이블입니다.
@@ -37,9 +37,9 @@ Car_No는 각각의 등록된 차량을 유일하게 식별하는 데 사용됩�
 3. Manufacturer_Logo
 설명: 제조사별 로고 이미지 정보
 컬럼명	타입	NULL	설명
-Manufacturer_Logo_ID	int(11)	NO (PK)	로고 고유번호 (AUTO_INCREMENT)
-Manufacturer_Name	    varchar(100)	YES	제조사 이름
-Logo_URL	            text	YES	로고 이미지 경로
+Manufacturer_Logo_ID int(11)	NO (PK)	로고 고유번호 (AUTO_INCREMENT)
+Manufacturer_Name	varchar(100)	YES	제조사 이름
+Logo_URL text	YES	로고 이미지 경로
 
 *PK: Manufacturer_Logo_ID (Auto Increment)
 제조사 이름은 중복될 수 없다고 가정하더라도, 이미지 정보의 고유성 보장을 위해 ID를 PK로 사용했습니다.
@@ -48,9 +48,9 @@ Logo_URL	            text	YES	로고 이미지 경로
 4. Manufacturer_Info
 설명: 제조사별 국가 정보
 컬럼명	타입	NULL	설명
-Manufacturer_ID	  int(11)	NO (PK)	고유 ID (AUTO_INCREMENT)
+Manufacturer_ID	int(11)	NO (PK)	고유 ID (AUTO_INCREMENT)
 Manufacturer_Name	varchar(100)	YES	제조사 이름
-Country	          varchar(50)	YES	제조사 국가
+Country varchar(50)	YES	제조사 국가
 
 *PK: Manufacturer_ID (Auto Increment)
 제조사 이름은 바뀔 가능성이나 중복 가능성이 있을 수 있으므로, 내부 식별자로 ID를 사용.
@@ -59,17 +59,17 @@ Manufacturer_Name은 비즈니스 식별자로 사용되며 외래키로 많이 
 5. Customer
 설명: 고객 회원 정보
 컬럼명	타입	NULL	설명
-customer_code	    int(11)	NO (PK)	고객 고유번호 (AUTO_INCREMENT)
-customer_id	      varchar(50)	YES	고객 아이디
-password	        varchar(255)	YES	비밀번호
-name	            varchar(50)	NO	이름
-birth_date	      date	NO	생년월일
-city	            varchar(50)	NO	거주 도시
-district	        varchar(50)	NO	거주 구
-phone	            varchar(20)	NO	전화번호
-gender	          char(1)	NO	성별
-kakao_id	        bigint(20)	YES	카카오 ID
-kakao_email	      varchar(100)	YES	카카오 이메일
+customer_code	int(11)	NO (PK)	고객 고유번호 (AUTO_INCREMENT)
+customer_id	varchar(50)	YES	고객 아이디
+password varchar(255)	YES	비밀번호
+name varchar(50)	NO	이름
+birth_date date	NO	생년월일
+city varchar(50)	NO	거주 도시
+district varchar(50)	NO	거주 구
+phone	varchar(20)	NO	전화번호
+gender char(1)	NO	성별
+kakao_id bigint(20)	YES	카카오 ID
+kakao_email varchar(100)	YES	카카오 이메일
 kakao_profile_url	varchar(255)	YES	카카오 프로필 이미지 URL
 
 *PK: customer_code (Auto Increment)
@@ -80,11 +80,11 @@ customer_id는 로그인이나 사용자 확인용 ID로 사용됩니다. 이 �
 6. alarm
 설명: 특정 차량 최저가 알림 테이블
 컬럼명	타입	NULL	설명
-userId	        varchar(50)	NO (PK)	사용자 ID
+userId varchar(50)	NO (PK)	사용자 ID
 Full_Model_Name	varchar(255)	NO (PK)	차종 이름 (중복 제거)
-Price	          varchar(20)	YES	해당 차종 최저가
-Use_YN	        char(1)	YES (default: 'Y')	알림 사용 여부
-reg_date	      datetime	YES (default: current_timestamp)	등록일
+Price	varchar(20)	YES	해당 차종 최저가
+Use_YN char(1)	YES (default: 'Y')	알림 사용 여부
+reg_date datetime	YES (default: current_timestamp)	등록일
 
 *PK: userId + Full_Model_Name (복합키)
 한 명의 사용자가 같은 차량 모델에 대해 한 번만 알림을 설정해야 하므로 중복 방지를 위해 복합키 설정.
