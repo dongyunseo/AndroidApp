@@ -1,1 +1,68 @@
-Test
+Database Schema
+1. Car_Img_File
+설명: 제조사별 차량별 이미지 정보를 저장
+
+컬럼명	타입	NULL	설명
+manufacturer_name	varchar(50)	YES	제조사 이름
+car_name	varchar(50)	YES	차량 이름
+img_url	varchar(255)	YES	차량 이미지 경로
+
+2. Car_Pirce
+설명: 중고차 상세 정보 테이블
+
+컬럼명	타입	NULL	설명
+Car_No	int(11)	NO (PK)	차량 고유번호 (AUTO_INCREMENT)
+Manufacturer	varchar(50)	YES	제조사
+Model_Name	varchar(100)	YES	모델명
+Full_Model_Name	varchar(200)	YES	모델 전체 이름
+URL	varchar(255)	YES	상세 페이지 링크
+Car_Img_URL	varchar(255)	YES	차량 이미지 URL
+Price	int(11)	YES	가격
+Year	int(11)	YES	연식
+Mileage	varchar(50)	YES	주행 거리
+Fuel_Type	varchar(50)	YES	연료 종류
+Location	varchar(100)	YES	판매 지역
+
+3. Manufacturer_Logo
+설명: 제조사별 로고 이미지 정보
+
+컬럼명	타입	NULL	설명
+Manufacturer_Logo_ID	int(11)	NO (PK)	로고 고유번호 (AUTO_INCREMENT)
+Manufacturer_Name	varchar(100)	YES	제조사 이름
+Logo_URL	text	YES	로고 이미지 경로
+
+4. Manufacturer_Info
+설명: 제조사별 국가 정보
+
+컬럼명	타입	NULL	설명
+Manufacturer_ID	int(11)	NO (PK)	고유 ID (AUTO_INCREMENT)
+Manufacturer_Name	varchar(100)	YES	제조사 이름
+Country	varchar(50)	YES	제조사 국가
+
+5. Customer
+설명: 고객 회원 정보
+
+컬럼명	타입	NULL	설명
+customer_code	int(11)	NO (PK)	고객 고유번호 (AUTO_INCREMENT)
+customer_id	varchar(50)	YES	고객 아이디
+password	varchar(255)	YES	비밀번호
+name	varchar(50)	NO	이름
+birth_date	date	NO	생년월일
+city	varchar(50)	NO	거주 도시
+district	varchar(50)	NO	거주 구
+phone	varchar(20)	NO	전화번호
+gender	char(1)	NO	성별
+kakao_id	bigint(20)	YES	카카오 ID
+kakao_email	varchar(100)	YES	카카오 이메일
+kakao_profile_url	varchar(255)	YES	카카오 프로필 이미지 URL
+
+6. alarm
+설명: 특정 차량 최저가 알림 테이블
+
+컬럼명	타입	NULL	설명
+userId	varchar(50)	NO (PK)	사용자 ID
+Full_Model_Name	varchar(255)	NO (PK)	차종 이름 (중복 제거)
+Price	varchar(20)	YES	해당 차종 최저가
+Use_YN	char(1)	YES (default: 'Y')	알림 사용 여부
+reg_date	datetime	YES (default: current_timestamp)	등록일
+
