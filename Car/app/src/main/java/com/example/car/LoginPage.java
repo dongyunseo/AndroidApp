@@ -5,15 +5,17 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.os.Bundle;
-
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.util.Base64;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -21,17 +23,13 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.kakao.sdk.auth.model.OAuthToken;
 import com.kakao.sdk.user.UserApiClient;
-import kotlin.Unit;
-import kotlin.jvm.functions.Function2;
-
-import androidx.activity.EdgeToEdge;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import java.security.MessageDigest;
 import java.util.HashMap;
 import java.util.Map;
+
+import kotlin.Unit;
+import kotlin.jvm.functions.Function2;
 
 public class LoginPage extends AppCompatActivity {
     private Button btnKakaoLogin;
@@ -103,14 +101,36 @@ public class LoginPage extends AppCompatActivity {
                 // 로그인 실패
                 Toast.makeText(LoginPage.this, "로그인 실패", Toast.LENGTH_SHORT).show();
                 Log.e("login_test", "login_test false  = "+String.valueOf(throwable));
-            } else if (oAuthToken != null) {
+            }  else if (oAuthToken != null) {
                 // 로그인 성공
                 Toast.makeText(LoginPage.this, "로그인 성공", Toast.LENGTH_SHORT).show();
                 Log.e("login_test", "login_test true = "+String.valueOf(oAuthToken));
-                // 여기서 사용자 정보 조회 가능
 
-                Log.e("login_test", "login_test else = "+String.valueOf(oAuthToken));
+                // 사용자 정보 요청
+                // 사용자 정보 요청
+                UserApiClient.getInstance().me((user, error) -> {
+                    if (error != null) {
+                        Log.e("kakao_user", "사용자 정보 요청 실패", error);
+                    } else if (user != null) {
+                        String id = String.valueOf(user.getId());
+                        String nickname = user.getKakaoAccount().getProfile().getNickname();
+                        String profileUrl = user.getKakaoAccount().getProfile().getProfileImageUrl();
+
+                        Log.d("kakao_user", "ID: " + id);
+                        Log.d("kakao_user", "Nickname: " + nickname);
+                        Log.d("kakao_user", "Profile Image: " + profileUrl);
+
+                        // ✅ MainPage로 이동
+                        // 카카오 ID는 로그인 ID가 아닌 임의로 만들어진 ID를 사용하기 때문에 UserName = Nickname을 보냄
+                        Intent intent = new Intent(LoginPage.this, MainPage.class);
+                        intent.putExtra("userId", nickname); // 카카오 ID를 userId로 전달
+                        startActivity(intent);
+                        finish(); // 로그인 화면 종료
+                    }
+                    return null;
+                });
             }
+
             return null;
         };
 
